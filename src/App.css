@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 23px;
+  background-color: var(--main);
+  color: white;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.appWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0px;
+}
+
+.mainApp {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: fit-content;
+}
+
+.tableWrapper {
+  @media (max-width: 767.98px) {
+    padding: 0px 12px 12px 12px;
+  }
+  @media (min-width: 768px) {
+    padding: 0px 32px 32px 32px;
+  }
+}
+
+.tag {
+  padding: 3px 6px;
+  background-color: white;
+  border-radius: 6px;
+  color: var(--main);
+  font-size: 12px;
+}

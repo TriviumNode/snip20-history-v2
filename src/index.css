@@ -1,0 +1,60 @@
+:root {
+  --main: rgb(34, 139, 230);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: "Montserrat", serif;
+  color: black;
+}
+
+button {
+  background-color: var(--main);
+  border: none;
+  padding: 8px 12px;
+  color: white;
+  transition: text-decoration 0.2s;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+button:hover {
+  text-decoration: underline;
+}
+button:disabled {
+  background-color: #898989;
+  cursor: not-allowed;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+input, select {
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid #898989;
+  background: white;
+}
+
+input.wide {
+  width: calc(100% - 24px);
+}
+
+.wide {
+  width: 100%;
+}
+
+
+button.tabulator-page {
+  color: black;
+  
+}
+
+button.tabulator-page.active {
+  color: black !important;
+  background-color: var(--main) !important;
+}
