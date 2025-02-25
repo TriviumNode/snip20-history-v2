@@ -18,3 +18,12 @@ export interface HistoryResponse {
         txs: HistoryObject[];
     }
 }
+
+export interface TokenInfoResponse {
+    token_info: {
+        decimals: number;
+        name: string;
+        symbol: string;
+        total_supply: null | string;
+    }
+}

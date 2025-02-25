@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Chains, { Chain, Token } from './config/chains';
 import { SecretNetworkClient } from 'secretjs';
 import { SmallSpinnerBlue } from './components/SmallSpinner/smallSpinner';
-import { HistoryResponse } from './types';
+import { HistoryResponse, TokenInfoResponse } from './types';
 import { ReactTabulator } from 'react-tabulator'
 
 const columns = [
@@ -106,10 +106,22 @@ function App() {
       if (typeof result === 'string') throw result;
       console.log(result.transfer_history.txs);
 
+      const tokenInfo = await connectedWallet.client.query.compute.queryContract({
+        contract_address: tokenAddress,
+        query: {
+          token_info: {},
+        },
+      }) as TokenInfoResponse;
+      if (typeof tokenInfo === 'string') throw result;
+      console.log('Token Info:', tokenInfo.token_info)
+
+      const divisor = Math.pow(10, tokenInfo.token_info.decimals);
+      console.log('divisor', divisor);
+
       const data: TableData[] = result.transfer_history.txs.map(tx => {
         return {
           id: parseInt(tx.id),
-          amount: `${tx.coins.amount} ${tx.coins.denom}`,
+          amount: `${(parseInt(tx.coins.amount) / divisor).toLocaleString(undefined, { maximumFractionDigits: tokenInfo.token_info.decimals })} ${tx.coins.denom}`,
           from: tx.from,
           sender: tx.sender,
           receiver: tx.receiver,
